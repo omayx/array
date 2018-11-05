@@ -1,0 +1,53 @@
+package array;
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Random;
+
+public class MainClass {
+
+	public static void main(String[] arg) {
+
+		Date currentDate = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
+		System.out.println(sdf.format((currentDate)));
+
+		Users semik = new Users("semik", "semik@trendyol.com", currentDate);
+
+		System.out.println(semik.UserName);
+		System.out.println(semik.email);
+		System.out.println(semik.createDate);
+
+		ArrayList<Users> list = new ArrayList<>();
+
+		System.out.println(currentDate.getDay());
+		try {
+			for (int i = 1; i <= 10; i++) {
+				Date currentDate1 = new Date();
+				list.add(new Users("omay", "omay@trendyol.com", currentDate1));
+				Thread.sleep(1000);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		Collections.sort(list, new Comparator<Users>() {
+	        @Override
+	        public int compare(Users fruit2, Users fruit1)
+	        {
+	            return  fruit2.createDate.compareTo(fruit1.createDate);
+	        }			
+	    });
+		
+		for (int i = 1; i <= 10; i++) {
+			System.out.println(list.get(i - 1).UserName + " mail: " + list.get(i - 1).email + "    tarih:"
+					+ list.get(i - 1).createDate);
+		
+			
+		
+		}
+	}
+}
